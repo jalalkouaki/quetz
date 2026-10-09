@@ -1,0 +1,30 @@
+# Functional Programming & Built-ins Demo in Quetz
+
+# 1. Default Parameters
+fn power(base, exp = 2) {
+    return base ** exp;
+}
+
+print("power(3) -> ${power(3)}");      # 3 ** 2 = 9
+print("power(2, 5) -> ${power(2, 5)}"); # 2 ** 5 = 32
+
+# 2. Built-in map()
+let numbers = [1, 2, 3, 4, 5];
+let squares = map(numbers, fn(x) { return x ** 2; });
+print("Squares of ${numbers}: ${squares}");
+
+# 3. Built-in filter()
+let evens = filter(numbers, fn(x) { return x % 2 == 0; });
+print("Even numbers: ${evens}");
+
+# 4. Built-in reduce()
+let sum = reduce(numbers, fn(acc, x) { return acc + x; }, 0);
+let product = reduce(numbers, fn(acc, x) { return acc * x; }, 1);
+print("Sum: ${sum}, Product: ${product}");
+
+# 5. Compound arithmetic operators (*=, /=, %=)
+let val = 100;
+val *= 2;   # 200
+val /= 4;   # 50
+val %= 15;  # 5
+print("Final val after compound operations: ${val}");

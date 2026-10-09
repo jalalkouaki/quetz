@@ -1,0 +1,6 @@
+# Hello World in Quetz
+let greeting = "Hello, World from Quetz!";
+print(greeting);
+
+let user = { "name": "Ada Lovelace", "role": "Computer Pioneer" };
+print("Welcome, " + user["name"] + " (" + user["role"] + ")!");

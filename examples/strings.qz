@@ -1,0 +1,20 @@
+# String Interpolation and Compound Assignment Demo in Quetz
+
+let language = "Quetz";
+let version = 0.2;
+let author = { "first": "Language", "last": "Designer" };
+
+# String interpolation with variables and member access
+let intro = "Welcome to ${language} v${version} created by ${author["first"]} ${author["last"]}!";
+print(intro);
+
+# Expressions inside string interpolation
+let a = 12;
+let b = 8;
+print("Math: ${a} + ${b} = ${a + b}, ${a} ** 2 = ${a ** 2}");
+
+# Compound string manipulation
+let msg = "Quetz";
+msg += " is";
+msg += " expressive!";
+print(msg);

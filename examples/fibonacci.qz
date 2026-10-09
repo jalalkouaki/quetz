@@ -1,0 +1,29 @@
+# Recursive and Iterative Fibonacci in Quetz
+
+fn fib_recursive(n) {
+    if n <= 1 {
+        return n;
+    }
+    return fib_recursive(n - 1) + fib_recursive(n - 2);
+}
+
+fn fib_iterative(n) {
+    if n <= 1 {
+        return n;
+    }
+    let a = 0;
+    let b = 1;
+    let i = 2;
+    while i <= n {
+        let temp = a + b;
+        a = b;
+        b = temp;
+        i += 1;
+    }
+    return b;
+}
+
+print("Calculating Fibonacci Numbers:");
+for i in range(0, 10) {
+    print("fib(" + str(i) + ") = " + str(fib_iterative(i)));
+}

@@ -1,0 +1,44 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Run Test Suite
+        run: python -m unittest discover tests -v
+
+      - name: Run All Example Programs
+        run: |
+          python quetz.py run examples/hello.qz
+          python quetz.py run examples/fibonacci.qz
+          python quetz.py run examples/fizzbuzz.qz
+          python quetz.py run examples/data_structures.qz
+          python quetz.py run examples/file_io.qz
+          python quetz.py run examples/strings.qz
+          python quetz.py run examples/functional.qz
+
+      - name: Verify Syntax Check on Valid File
+        run: python quetz.py check examples/hello.qz
+
+      - name: Verify Syntax Check Exits Non-Zero on Invalid File
+        run: |
+          python -c "import subprocess, sys, pathlib; p = pathlib.Path('bad.qz'); p.write_text('fn broken( {'); res = subprocess.run([sys.executable, 'quetz.py', 'check', 'bad.qz'], capture_output=True); p.unlink(missing_ok=True); sys.exit(0 if res.returncode != 0 else 1)"

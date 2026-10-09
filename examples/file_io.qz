@@ -1,0 +1,16 @@
+# File I/O & Exception Handling Demo
+
+let filename = "sample_output.tmp";
+let content = "Quetz language file I/O test\nGenerated automatically.";
+
+print("Writing to file: " + filename);
+write_file(filename, content);
+
+try {
+    let read_back = read_file(filename);
+    print("--- File Contents ---");
+    print(read_back);
+    print("---------------------");
+} catch (err) {
+    print("Error reading file: " + str(err));
+}

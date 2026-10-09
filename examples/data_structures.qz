@@ -1,0 +1,26 @@
+# Data structures showcase: Lists, Maps, High-order functions
+
+let scores = [88, 92, 79, 95, 100];
+push(scores, 84);
+
+print("Score count: " + str(len(scores)));
+
+# Map of student records
+let database = {
+    "alice": { "age": 22, "major": "Physics" },
+    "bob": { "age": 24, "major": "Math" }
+};
+
+# Higher-order filter simulation
+fn filter_list(lst, predicate) {
+    let result = [];
+    for item in lst {
+        if predicate(item) {
+            push(result, item);
+        }
+    }
+    return result;
+}
+
+let honors = filter_list(scores, fn(s) { return s >= 90; });
+print("Honors scores (>= 90): " + str(honors));
